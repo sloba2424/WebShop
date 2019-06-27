@@ -22,40 +22,40 @@ public class Korpa {
    }
    
    
-   public java.util.Iterator getIteratorStavkaKorpe() {
+ /*  public java.util.Iterator getIteratorStavkaKorpe() {
       if (stavkaKorpe == null)
          stavkaKorpe = new java.util.HashSet<StavkaKorpe>();
       return stavkaKorpe.iterator();
+   }*/
+   
+   
+   public void setStavkaKorpe(java.util.Collection<StavkaKorpe> novaStavkaKorpe) {
+      obrisiSveStavkeKorpe();
+      for (java.util.Iterator iter = novaStavkaKorpe.iterator(); iter.hasNext();)
+         dodajStavkuKorpe((StavkaKorpe)iter.next());
    }
    
    
-   public void setStavkaKorpe(java.util.Collection<StavkaKorpe> newStavkaKorpe) {
-      removeAllStavkaKorpe();
-      for (java.util.Iterator iter = newStavkaKorpe.iterator(); iter.hasNext();)
-         addStavkaKorpe((StavkaKorpe)iter.next());
-   }
-   
-   
-   public void addStavkaKorpe(StavkaKorpe newStavkaKorpe) {
-      if (newStavkaKorpe == null)
+   public void dodajStavkuKorpe(StavkaKorpe novaStavkaKorpe) {
+      if (novaStavkaKorpe == null)
          return;
       if (this.stavkaKorpe == null)
          this.stavkaKorpe = new java.util.HashSet<StavkaKorpe>();
-      if (!this.stavkaKorpe.contains(newStavkaKorpe))
-         this.stavkaKorpe.add(newStavkaKorpe);
+      if (!this.stavkaKorpe.contains(novaStavkaKorpe))
+         this.stavkaKorpe.add(novaStavkaKorpe);
    }
    
    
-   public void removeStavkaKorpe(StavkaKorpe oldStavkaKorpe) {
-      if (oldStavkaKorpe == null)
+   public void obrisiStavkaKorpe(StavkaKorpe staraStavkaKorpe) {
+      if (staraStavkaKorpe == null)
          return;
       if (this.stavkaKorpe != null)
-         if (this.stavkaKorpe.contains(oldStavkaKorpe))
-            this.stavkaKorpe.remove(oldStavkaKorpe);
+         if (this.stavkaKorpe.contains(staraStavkaKorpe))
+            this.stavkaKorpe.remove(staraStavkaKorpe);
    }
    
    
-   public void removeAllStavkaKorpe() {
+   public void obrisiSveStavkeKorpe() {
       if (stavkaKorpe != null)
          stavkaKorpe.clear();
    }

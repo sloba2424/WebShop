@@ -9,53 +9,53 @@ public class Kategorija {
    private String naziv;
    
    
-   public java.util.Collection<Kategorija> kategorijaB;
+   public java.util.Collection<Kategorija>potkategorija;
    
    
    
-   public java.util.Collection<Kategorija> getKategorijaB() {
-      if (kategorijaB == null)
-         kategorijaB = new java.util.HashSet<Kategorija>();
-      return kategorijaB;
+   public java.util.Collection<Kategorija> getPotkategorija() {
+      if (potkategorija == null)
+         potkategorija = new java.util.HashSet<Kategorija>();
+      return potkategorija;
+   }
+   
+
+  /* public java.util.Iterator getIteratorPotkategorija() {
+      if (potkategorija == null)
+         potkategorija = new java.util.HashSet<Kategorija>();
+      return potkategorija.iterator();
+   }*/
+   
+   
+   public void setPotkategorija(java.util.Collection<Kategorija> novaPotkategorija) {
+      obrisiSvePotkategorije();
+      for (java.util.Iterator iter = novaPotkategorija.iterator(); iter.hasNext();)
+         dodajPotkategoriju((Kategorija)iter.next());
    }
    
    
-   public java.util.Iterator getIteratorKategorijaB() {
-      if (kategorijaB == null)
-         kategorijaB = new java.util.HashSet<Kategorija>();
-      return kategorijaB.iterator();
-   }
-   
-   
-   public void setKategorijaB(java.util.Collection<Kategorija> newKategorijaB) {
-      removeAllKategorijaB();
-      for (java.util.Iterator iter = newKategorijaB.iterator(); iter.hasNext();)
-         addKategorijaB((Kategorija)iter.next());
-   }
-   
-   
-   public void addKategorijaB(Kategorija newKategorija) {
-      if (newKategorija == null)
+   public void dodajPotkategoriju(Kategorija novaPotkategorija) {
+      if (novaPotkategorija == null)
          return;
-      if (this.kategorijaB == null)
-         this.kategorijaB = new java.util.HashSet<Kategorija>();
-      if (!this.kategorijaB.contains(newKategorija))
-         this.kategorijaB.add(newKategorija);
+      if (this.potkategorija == null)
+         this.potkategorija = new java.util.HashSet<Kategorija>();
+      if (!this.potkategorija.contains(novaPotkategorija))
+         this.potkategorija.add(novaPotkategorija);
    }
    
    
-   public void removeKategorijaB(Kategorija oldKategorija) {
-      if (oldKategorija == null)
+   public void obrisiPotkategoriju(Kategorija staraPotkategorija) {
+      if (staraPotkategorija == null)
          return;
-      if (this.kategorijaB != null)
-         if (this.kategorijaB.contains(oldKategorija))
-            this.kategorijaB.remove(oldKategorija);
+      if (this.potkategorija != null)
+         if (this.potkategorija.contains(staraPotkategorija))
+            this.potkategorija.remove(staraPotkategorija);
    }
    
    
-   public void removeAllKategorijaB() {
-      if (kategorijaB != null)
-         kategorijaB.clear();
+   public void obrisiSvePotkategorije() {
+      if (potkategorija != null)
+         potkategorija.clear();
    }
 
 }

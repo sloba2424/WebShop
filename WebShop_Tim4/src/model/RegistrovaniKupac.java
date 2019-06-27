@@ -19,40 +19,39 @@ public class RegistrovaniKupac extends Kupac {
          listaZelja = new java.util.HashSet<Proizvod>();
       return listaZelja;
    }
+ 
    
-
-   
-   
-   public void setListaZelja(java.util.Collection<Proizvod> newProizvod) {
-      removeAllPreporuceniProizvodi();
-      for (java.util.Iterator iter = newProizvod.iterator(); iter.hasNext();)
-         addListaZelja((Proizvod)iter.next());
+   public void setListaZelja(java.util.Collection<Proizvod> noviProizvod) {
+      obrisiSvePreporuceneProizvode();
+      for (java.util.Iterator iter = noviProizvod.iterator(); iter.hasNext();)
+         dodajListuZelja((Proizvod)iter.next());
    }
    
    
-   public void addListaZelja(Proizvod newProizvod) {
-      if (newProizvod == null)
+   public void dodajListuZelja(Proizvod noviProizvod) {
+      if (noviProizvod == null)
          return;
       if (this.listaZelja == null)
          this.listaZelja = new java.util.HashSet<Proizvod>();
-      if (!this.listaZelja.contains(newProizvod))
-         this.listaZelja.add(newProizvod);
+      if (!this.listaZelja.contains(noviProizvod))
+         this.listaZelja.add(noviProizvod);
    }
    
    
-   public void removeListaZelja(Proizvod oldProizvod) {
-      if (oldProizvod == null)
+   public void obrisiSaListeZelja(Proizvod proizvod) {
+      if (proizvod == null)
          return;
       if (this.listaZelja != null)
-         if (this.listaZelja.contains(oldProizvod))
-            this.listaZelja.remove(oldProizvod);
+         if (this.listaZelja.contains(proizvod))
+            this.listaZelja.remove(proizvod);
    }
    
    
-   public void removeAllListaZelja() {
+   public void obrisiSveSaListeZelja() {
       if (listaZelja != null)
          listaZelja.clear();
    }
+   
    
    public java.util.Collection<Proizvod> getPreporuceniProizvodi() {
       if (preporuceniProizvodi == null)
@@ -60,36 +59,34 @@ public class RegistrovaniKupac extends Kupac {
       return preporuceniProizvodi;
    }
    
- 
    
-   
-   public void setPreporuceniProizvodi(java.util.Collection<Proizvod> newProizvod) {
-      removeAllPreporuceniProizvodi();
-      for (java.util.Iterator iter = newProizvod.iterator(); iter.hasNext();)
-         addPreporuceniProizvodi((Proizvod)iter.next());
+   public void setPreporuceniProizvodi(java.util.Collection<Proizvod> noviProizvod) {
+      obrisiSvePreporuceneProizvode();
+      for (java.util.Iterator iter = noviProizvod.iterator(); iter.hasNext();)
+         dodajPreporuceniProizvod((Proizvod)iter.next());
    }
    
    
-   public void addPreporuceniProizvodi(Proizvod newProizvod) {
-      if (newProizvod == null)
+   public void dodajPreporuceniProizvod(Proizvod noviProizvod) {
+      if (noviProizvod == null)
          return;
       if (this.preporuceniProizvodi == null)
          this.preporuceniProizvodi = new java.util.HashSet<Proizvod>();
-      if (!this.preporuceniProizvodi.contains(newProizvod))
-         this.preporuceniProizvodi.add(newProizvod);
+      if (!this.preporuceniProizvodi.contains(noviProizvod))
+         this.preporuceniProizvodi.add(noviProizvod);
    }
    
    
-   public void removePreporuceniProizvodi(Proizvod oldProizvod) {
-      if (oldProizvod == null)
+   public void obrisiIzPreporucenihProizvoda(Proizvod proizvod) {
+      if (proizvod == null)
          return;
       if (this.preporuceniProizvodi != null)
-         if (this.preporuceniProizvodi.contains(oldProizvod))
-            this.preporuceniProizvodi.remove(oldProizvod);
+         if (this.preporuceniProizvodi.contains(proizvod))
+            this.preporuceniProizvodi.remove(proizvod);
    }
    
    
-   public void removeAllPreporuceniProizvodi() {
+   public void obrisiSvePreporuceneProizvode() {
       if (preporuceniProizvodi != null)
     	  preporuceniProizvodi.clear();
    }
@@ -108,39 +105,39 @@ public class RegistrovaniKupac extends Kupac {
    }
    
    
-   public void setNarudzbenica(java.util.Collection<Narudzbenica> newNarudzbenica) {
-      removeAllNarudzbenica();
-      for (java.util.Iterator iter = newNarudzbenica.iterator(); iter.hasNext();)
-         addNarudzbenica((Narudzbenica)iter.next());
+   public void setNarudzbenica(java.util.Collection<Narudzbenica> novaNarudzbenica) {
+      obrisiSveNarudzbenice();
+      for (java.util.Iterator iter = novaNarudzbenica.iterator(); iter.hasNext();)
+         dodajNarudzbenicu((Narudzbenica)iter.next());
    }
    
    
-   public void addNarudzbenica(Narudzbenica newNarudzbenica) {
-      if (newNarudzbenica == null)
+   public void dodajNarudzbenicu(Narudzbenica novaNarudzbenica) {
+      if (novaNarudzbenica == null)
          return;
       if (this.narudzbenica == null)
          this.narudzbenica = new java.util.HashSet<Narudzbenica>();
-      if (!this.narudzbenica.contains(newNarudzbenica))
+      if (!this.narudzbenica.contains(novaNarudzbenica))
       {
-         this.narudzbenica.add(newNarudzbenica);
-         newNarudzbenica.setRegistrovaniKupac(this);      
+         this.narudzbenica.add(novaNarudzbenica);
+         novaNarudzbenica.setRegistrovaniKupac(this);      
       }
    }
    
    
-   public void removeNarudzbenica(Narudzbenica oldNarudzbenica) {
-      if (oldNarudzbenica == null)
+   public void obrisiNarudzbenicu(Narudzbenica staraNarudzbenica) {
+      if (staraNarudzbenica == null)
          return;
       if (this.narudzbenica != null)
-         if (this.narudzbenica.contains(oldNarudzbenica))
+         if (this.narudzbenica.contains(staraNarudzbenica))
          {
-            this.narudzbenica.remove(oldNarudzbenica);
-            oldNarudzbenica.setRegistrovaniKupac((RegistrovaniKupac)null);
+            this.narudzbenica.remove(staraNarudzbenica);
+            staraNarudzbenica.setRegistrovaniKupac((RegistrovaniKupac)null);
          }
    }
    
    
-   public void removeAllNarudzbenica() {
+   public void obrisiSveNarudzbenice() {
       if (narudzbenica != null)
       {
          Narudzbenica oldNarudzbenica;

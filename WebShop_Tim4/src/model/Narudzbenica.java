@@ -50,19 +50,19 @@ public class Narudzbenica extends Korpa {
    }
    
    
-   public void setRegistrovaniKupac(RegistrovaniKupac newRegistrovaniKupac) {
-      if (this.registrovaniKupac == null || !this.registrovaniKupac.equals(newRegistrovaniKupac))
+   public void setRegistrovaniKupac(RegistrovaniKupac noviRegistrovaniKupac) {
+      if (this.registrovaniKupac == null || !this.registrovaniKupac.equals(noviRegistrovaniKupac))
       {
          if (this.registrovaniKupac != null)
          {
-            RegistrovaniKupac oldRegistrovaniKupac = this.registrovaniKupac;
+            RegistrovaniKupac stariRegistrovaniKupac = this.registrovaniKupac;
             this.registrovaniKupac = null;
-            oldRegistrovaniKupac.removeNarudzbenica(this);
+            stariRegistrovaniKupac.obrisiNarudzbenicu(this);
          }
-         if (newRegistrovaniKupac != null)
+         if (noviRegistrovaniKupac != null)
          {
-            this.registrovaniKupac = newRegistrovaniKupac;
-            this.registrovaniKupac.addNarudzbenica(this);
+            this.registrovaniKupac = noviRegistrovaniKupac;
+            this.registrovaniKupac.dodajNarudzbenicu(this);
          }
       }
    }
