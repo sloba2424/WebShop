@@ -1,9 +1,5 @@
 package model;
 
-
-import java.util.*;
-
-
 public class Proizvod {
    
    private String idAritkla;
@@ -15,6 +11,7 @@ public class Proizvod {
    private String velicina;
    
    private Boja boja;
+   
    
    
    public java.util.Collection<Tag> tag;
@@ -220,5 +217,15 @@ public class Proizvod {
       if (stanjeProizvoda != null)
          stanjeProizvoda.clear();
    }
+
+
+public String getNaziv() {
+	return naziv;
+}
+
+
+public void setNaziv(String naziv) {
+	this.naziv = naziv;
+}
 
 }

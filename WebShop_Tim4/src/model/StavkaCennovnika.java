@@ -13,4 +13,12 @@ public class StavkaCennovnika {
    
    public Proizvod proizvod;
 
+public int getJedinicnaCena() {
+	return jedinicnaCena;
+}
+
+public void setJedinicnaCena(int jedinicnaCena) {
+	this.jedinicnaCena = jedinicnaCena;
+}
+
 }

@@ -1,17 +1,30 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.Collections;
 
-import java.util.*;
-
+import komparatori.PoredjenjePoNazivuA_Z;
+import komparatori.PoredjenjePoNazivuZ_A;
 
 public class Aplikacija {
 	
    public java.util.Collection<KorisnickiNalog> korisnickiNalog;
    
-   public java.util.Collection<Proizvod> proizvod;
+   public ArrayList<Proizvod> proizvod;
    
    public java.util.Collection<Prodavnica> prodavnica;
    
+   private void sortirajPoNazivuA_Z(){
+	   
+	   Collections.sort(proizvod, new PoredjenjePoNazivuA_Z());
+	   
+   }
+   
+	private void sortirajPoNazivuZ_A(){
+		   
+	   Collections.sort(proizvod, new PoredjenjePoNazivuZ_A());
+		   
+	}
    
    
    public java.util.Collection<KorisnickiNalog> getKorisnickiNalog() {
@@ -61,7 +74,7 @@ public class Aplikacija {
    
    public java.util.Collection<Proizvod> getProizvod() {
       if (proizvod == null)
-         proizvod = new java.util.HashSet<Proizvod>();
+         proizvod = new ArrayList();
       return proizvod;
    }
    
@@ -84,7 +97,7 @@ public class Aplikacija {
       if (noviProizvod == null)
          return;
       if (this.proizvod == null)
-         this.proizvod = new java.util.HashSet<Proizvod>();
+         this.proizvod = new ArrayList();
       if (!this.proizvod.contains(noviProizvod))
          this.proizvod.add(noviProizvod);
    }
