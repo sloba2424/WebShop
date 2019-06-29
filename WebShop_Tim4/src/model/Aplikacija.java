@@ -6,6 +6,8 @@ import java.util.Collections;
 import komparatori.PoredjenjePoNazivuA_Z;
 import komparatori.PoredjenjePoNazivuZ_A;
 
+import model.TipKorisnika;
+
 public class Aplikacija {
 	
 	private static Aplikacija single_instance = null; 
@@ -21,11 +23,13 @@ public class Aplikacija {
         return single_instance; 
     }
 	
-   public java.util.Collection<KorisnickiNalog> korisnickiNalog;
+	
+   public ArrayList<KorisnickiNalog> korisnickiNalog;
    
    public ArrayList<Proizvod> proizvod;
    
    public java.util.Collection<Prodavnica> prodavnica;
+   
    
    private void sortirajPoNazivuA_Z(){
 	   
@@ -39,10 +43,59 @@ public class Aplikacija {
 		   
 	}
    
+	private static boolean validnaEAdresa(String eAdresa)
+	{
+		String emailRegex =  "^[a-zA-Z0-9_+&*-]+(?:\\."+ 
+                "[a-zA-Z0-9_+&*-]+)*@" + 
+                "(?:[a-zA-Z0-9-]+\\.)+[a-z" + 
+                "A-Z]{2,7}$"; 
+		java.util.regex.Pattern p = java.util.regex.Pattern.compile(emailRegex);
+		if (eAdresa == null) 
+	            return false; 
+	    return p.matcher(eAdresa).matches(); 
+	}
+	
+   public int registrovanje(String ime, String prezime, Pol p, String nazivMesta, String pttBroj, String adresa, String korisnickoIme, String lozinka, String ponovljenaLozinka, String eAdresa)
+   {
+	   for(KorisnickiNalog nalog : korisnickiNalog)
+	   {
+		   if(nalog.getKorisnickoIme() == korisnickoIme)
+			   return 1; //Korisnicko ime vec postoji
+	   }
+	   if(lozinka != ponovljenaLozinka)
+	   {
+		   return 2; //Ponovljena lozinka nije ista
+	   }
+	   else if(!validnaEAdresa(eAdresa))
+	   {
+		   return 3; //Nepravilna e-mail adresa
+	   }
+	   else
+	   {
+		   KorisnickiNalog nalog = new KorisnickiNalog();
+		   nalog.setKorisnickoIme(korisnickoIme);
+		   nalog.setLozinka(lozinka);
+		   nalog.setVrstaKorisnika(TipKorisnika.registrovaniKupac);
+		   
+		   Mesto mesto = new Mesto(nazivMesta, pttBroj);
+		   nalog.setMesto(mesto);
+		   
+		   nalog.registrovaniKupac.setIme(ime);
+		   nalog.registrovaniKupac.setPrezime(prezime);
+		   nalog.registrovaniKupac.setPol(p);
+		   nalog.registrovaniKupac.setAdresa(adresa);
+		   nalog.registrovaniKupac.seteAdresa(eAdresa);
+		   nalog.registrovaniKupac.setKorisnickiNalog(nalog);
+		   
+		   dodajKorisnickiNalog(nalog);
+		   
+	   }
+	   return 0; //Sve je ispravno uneseno
+   }
    
    public java.util.Collection<KorisnickiNalog> getKorisnickiNalog() {
       if (korisnickiNalog == null)
-         korisnickiNalog = new java.util.HashSet<KorisnickiNalog>();
+         korisnickiNalog = new ArrayList();
       return korisnickiNalog;
    }
    
@@ -65,7 +118,7 @@ public class Aplikacija {
       if (noviKorisnickiNalog == null)
          return;
       if (this.korisnickiNalog == null)
-         this.korisnickiNalog = new java.util.HashSet<KorisnickiNalog>();
+         this.korisnickiNalog = new ArrayList();
       if (!this.korisnickiNalog.contains(noviKorisnickiNalog))
          this.korisnickiNalog.add(noviKorisnickiNalog);
    }
