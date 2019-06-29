@@ -5,9 +5,10 @@ import gui.AppWindow;
 
 public class Main {
 	
-	private Aplikacija aplikacija;
+	Aplikacija app = Aplikacija.getInstance();
 
 	public static void main(String[] args) {
+		
 		
 			
 		AppWindow window = new AppWindow();
