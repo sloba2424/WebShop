@@ -3,6 +3,8 @@ package model;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import komparatori.PoredjenjePoCeniOpadajuce;
+import komparatori.PoredjenjePoCeniRastuce;
 import komparatori.PoredjenjePoNazivuA_Z;
 import komparatori.PoredjenjePoNazivuZ_A;
 
@@ -24,6 +26,14 @@ public class Aplikacija {
 		   
 	   Collections.sort(proizvod, new PoredjenjePoNazivuZ_A());
 		   
+	}
+	
+	private void sortirajPoCeniRastuce() {
+		Collections.sort(proizvod, new PoredjenjePoCeniRastuce());
+	}
+	
+	private void sortirajPoCeniOpadajuce() {
+		Collections.sort(proizvod, new PoredjenjePoCeniOpadajuce());
 	}
    
    

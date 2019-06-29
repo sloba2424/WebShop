@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 public class Proizvod {
    
    private String idAritkla;
@@ -21,6 +23,13 @@ public class Proizvod {
    public java.util.Collection<Kategorija> kategorija;
    
    public java.util.Collection<StanjeProizvoda> stanjeProizvoda;
+   
+   public ArrayList<StavkaCennovnika> stavkeCenovnika;
+   
+   public int getCena() {  //zadnja dodata stavkaCenovnika u listi sadrzi aktuelnu cenu
+	   int cena = stavkeCenovnika.get(stavkeCenovnika.size()-1).getJedinicnaCena();
+	   return cena;
+   }
    
    
    
