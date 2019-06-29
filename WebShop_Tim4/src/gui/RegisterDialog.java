@@ -19,6 +19,9 @@ import javax.swing.SwingConstants;
 import javax.swing.JToggleButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.BoxLayout;
+import javax.swing.ButtonGroup;
+import javax.swing.JRadioButton;
 
 public class RegisterDialog extends JDialog {
 
@@ -32,6 +35,10 @@ public class RegisterDialog extends JDialog {
 	private JPasswordField passwordField;
 	private JPasswordField passwordField_1;
 	private JTextField textField_6;
+	private ButtonGroup bg;
+	
+	private JRadioButton rdbtnMuki;
+	private JRadioButton rdbtnenski;
 
 
 	/**
@@ -39,7 +46,7 @@ public class RegisterDialog extends JDialog {
 	 */
 	public RegisterDialog() {
 		setTitle("Registracija");
-		setBounds(100, 100, 626, 273);
+		setBounds(100, 100, 626, 312);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -48,6 +55,9 @@ public class RegisterDialog extends JDialog {
 		gbl_contentPanel.rowHeights = new int[]{0, 0, 0, 0, 0};
 		gbl_contentPanel.columnWeights = new double[]{0.0, 1.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
 		gbl_contentPanel.rowWeights = new double[]{0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
+		
+		bg = new ButtonGroup();
+		
 		contentPanel.setLayout(gbl_contentPanel);
 		{
 			JPanel panel = new JPanel();
@@ -60,9 +70,9 @@ public class RegisterDialog extends JDialog {
 			contentPanel.add(panel, gbc_panel);
 			GridBagLayout gbl_panel = new GridBagLayout();
 			gbl_panel.columnWidths = new int[]{0, 0, 0, 0, 0};
-			gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+			gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 			gbl_panel.columnWeights = new double[]{0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
-			gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+			gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 			panel.setLayout(gbl_panel);
 			{
 				JLabel lblIme = new JLabel("Ime");
@@ -143,7 +153,7 @@ public class RegisterDialog extends JDialog {
 			{
 				JLabel lblAdresa = new JLabel("Adresa");
 				GridBagConstraints gbc_lblAdresa = new GridBagConstraints();
-				gbc_lblAdresa.insets = new Insets(0, 0, 0, 5);
+				gbc_lblAdresa.insets = new Insets(0, 0, 5, 5);
 				gbc_lblAdresa.anchor = GridBagConstraints.WEST;
 				gbc_lblAdresa.gridx = 1;
 				gbc_lblAdresa.gridy = 9;
@@ -152,11 +162,42 @@ public class RegisterDialog extends JDialog {
 			{
 				textField_5 = new JTextField();
 				GridBagConstraints gbc_textField_5 = new GridBagConstraints();
+				gbc_textField_5.insets = new Insets(0, 0, 5, 0);
 				gbc_textField_5.fill = GridBagConstraints.HORIZONTAL;
 				gbc_textField_5.gridx = 3;
 				gbc_textField_5.gridy = 9;
 				panel.add(textField_5, gbc_textField_5);
 				textField_5.setColumns(10);
+			}
+			{
+				JLabel lblNewLabel = new JLabel("Pol");
+				GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
+				gbc_lblNewLabel.anchor = GridBagConstraints.NORTHWEST;
+				gbc_lblNewLabel.insets = new Insets(0, 0, 0, 5);
+				gbc_lblNewLabel.gridx = 1;
+				gbc_lblNewLabel.gridy = 11;
+				panel.add(lblNewLabel, gbc_lblNewLabel);
+			}
+			{
+				JPanel panel_1 = new JPanel();
+				GridBagConstraints gbc_panel_1 = new GridBagConstraints();
+				gbc_panel_1.fill = GridBagConstraints.BOTH;
+				gbc_panel_1.gridx = 3;
+				gbc_panel_1.gridy = 11;
+				panel.add(panel_1, gbc_panel_1);
+				panel_1.setLayout(new BoxLayout(panel_1, BoxLayout.Y_AXIS));
+				{
+					rdbtnMuki = new JRadioButton("Mu\u0161ki");
+					rdbtnMuki.setSelected(true);
+					panel_1.add(rdbtnMuki);
+				}
+				{
+					rdbtnenski = new JRadioButton("\u017Denski");
+					panel_1.add(rdbtnenski);
+				}
+				
+				bg.add(rdbtnMuki);
+				bg.add(rdbtnenski);
 			}
 		}
 		{
@@ -305,3 +346,10 @@ public class RegisterDialog extends JDialog {
 	}
 
 }
+
+
+
+
+
+
+

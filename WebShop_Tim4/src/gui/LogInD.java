@@ -120,7 +120,7 @@ public class LogInD extends JDialog {
 		gbc_btnCancel.gridy = 7;
 		contentPane.add(btnCancel, gbc_btnCancel);
 		
-		JButton btnNewButton = new JButton("Uloguj se");
+		JButton btnNewButton = new JButton("Prijavi se");
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
