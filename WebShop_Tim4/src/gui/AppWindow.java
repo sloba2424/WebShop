@@ -20,7 +20,9 @@ public class AppWindow {
 	}
 
 	private void initialize() {
+		
 		frame = new JFrame();
+		frame.setTitle("Web App");
 		frame.setBounds(100, 100, 830, 630);
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

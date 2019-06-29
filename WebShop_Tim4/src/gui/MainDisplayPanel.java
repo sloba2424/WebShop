@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
+import javax.swing.UIManager;
+import java.awt.Color;
 
 public class MainDisplayPanel extends JPanel {
 
@@ -47,6 +49,7 @@ public class MainDisplayPanel extends JPanel {
 		add(tree, gbc_tree);
 		
 		ProizvodiPanel proizvodiPanel = new ProizvodiPanel();
+		proizvodiPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Proizvodi", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		GridBagConstraints gbc_proizvodiPanel = new GridBagConstraints();
 		gbc_proizvodiPanel.insets = new Insets(0, 0, 5, 5);
 		gbc_proizvodiPanel.fill = GridBagConstraints.BOTH;
