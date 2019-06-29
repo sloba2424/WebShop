@@ -3,12 +3,23 @@ package model;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import komparatori.PoredjenjePoCeniOpadajuce;
-import komparatori.PoredjenjePoCeniRastuce;
 import komparatori.PoredjenjePoNazivuA_Z;
 import komparatori.PoredjenjePoNazivuZ_A;
 
 public class Aplikacija {
+	
+	private static Aplikacija single_instance = null; 
+	
+	private Aplikacija() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public static Aplikacija getInstance() { 
+        if (single_instance == null) 
+            single_instance = new Aplikacija(); 
+  
+        return single_instance; 
+    }
 	
    public java.util.Collection<KorisnickiNalog> korisnickiNalog;
    
@@ -26,14 +37,6 @@ public class Aplikacija {
 		   
 	   Collections.sort(proizvod, new PoredjenjePoNazivuZ_A());
 		   
-	}
-	
-	private void sortirajPoCeniRastuce() {
-		Collections.sort(proizvod, new PoredjenjePoCeniRastuce());
-	}
-	
-	private void sortirajPoCeniOpadajuce() {
-		Collections.sort(proizvod, new PoredjenjePoCeniOpadajuce());
 	}
    
    
