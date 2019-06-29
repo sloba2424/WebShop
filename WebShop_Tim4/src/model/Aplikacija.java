@@ -1,7 +1,9 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 import komparatori.PoredjenjePoNazivuA_Z;
 import komparatori.PoredjenjePoNazivuZ_A;
@@ -174,5 +176,25 @@ public class Aplikacija {
       if (prodavnica != null)
          prodavnica.clear();
    }
+   
+   List<Proizvod> pronadjiProizvode(String tekstPretrage, List<Tag> tagovi)
+   {
+	   List<Proizvod> pronadjeniProizvodi = new ArrayList<Proizvod>();
+	   for (Proizvod p : proizvod)
+	   {
+		   /*
+		    * Za sada jednostavna pretraga koja proveri da li je naziv proizvoda bar 30% slican sa tekstom pretrage i sadrzi zadate tagove.
+		    * Pitati profesoricu da li treba i neki kompleksniji search ili ne, posto je ovo ipak samo prototip.
+		    */
+		   if (Util.similarity(p.getNaziv(), tekstPretrage) > 0.3 && Util.proveriTagove(p.getTag(), tagovi))
+		   {
+			   pronadjeniProizvodi.add(p);
+		   }
+	   }
+	   
+	   return pronadjeniProizvodi;
+   }
+
+
 
 }
