@@ -10,11 +10,15 @@ import javax.swing.ImageIcon;
 import java.awt.Insets;
 import javax.swing.JTextField;
 import javax.swing.border.MatteBorder;
+
+import model.StavkaKorpe;
+
 import java.awt.Color;
 import javax.swing.border.LineBorder;
 
 public class StavkaKorpePanel extends JPanel {
 	private JTextField textField;
+	private StavkaKorpe stavka;
 
 	/**
 	 * Create the panel.
@@ -80,6 +84,14 @@ public class StavkaKorpePanel extends JPanel {
 		gbc_lblNewLabel_4.gridy = 1;
 		add(lblNewLabel_4, gbc_lblNewLabel_4);
 
+	}
+	
+	public StavkaKorpePanel(StavkaKorpe sk) {
+		stavka = sk;
+	}
+
+	public StavkaKorpe getStavka() {
+		return stavka;
 	}
 
 }

@@ -1,10 +1,11 @@
 package model;
 
 
+import java.io.Serializable;
 import java.util.*;
 
 
-public class KorisnickiNalog {
+public class KorisnickiNalog implements Serializable {
    
    private String korisnickoIme;
    
@@ -21,6 +22,19 @@ public class KorisnickiNalog {
 	}
 	
 	
+	
+	public KorisnickiNalog(String korisnickoIme, String lozinka, TipKorisnika vrstaKorisnika, Mesto mesto,
+			RegistrovaniKupac registrovaniKupac) {
+		super();
+		this.korisnickoIme = korisnickoIme;
+		this.lozinka = lozinka;
+		this.vrstaKorisnika = vrstaKorisnika;
+		this.mesto = mesto;
+		this.registrovaniKupac = registrovaniKupac;
+	}
+
+
+
 	public String getKorisnickoIme() {
 		return korisnickoIme;
 	}

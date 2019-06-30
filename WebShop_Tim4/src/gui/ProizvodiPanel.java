@@ -5,14 +5,27 @@ import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.swing.border.TitledBorder;
 
+import model.Aplikacija;
+import model.Proizvod;
+
 public class ProizvodiPanel extends JPanel {
+	Map<String, Proizvod> labela_proizvod;
+	Aplikacija app;
 
 	/**
 	 * Create the panel.
 	 */
 	public ProizvodiPanel() {
+		app = Aplikacija.getInstance();
+		labela_proizvod = new HashMap<String,Proizvod>(); 
+		
 		setBorder(new TitledBorder(null, "Preporuceni proizvodi", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -46,4 +59,5 @@ public class ProizvodiPanel extends JPanel {
 		add(proizvodMini_2, gbc_proizvodMini_2);
 
 	}
+	
 }

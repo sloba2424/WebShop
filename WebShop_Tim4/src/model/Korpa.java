@@ -1,10 +1,11 @@
 package model;
 
 
+import java.io.Serializable;
 import java.util.*;
 
 
-public class Korpa {
+public class Korpa implements Serializable {
    
    public java.util.Collection<StavkaKorpe> stavkaKorpe;
    

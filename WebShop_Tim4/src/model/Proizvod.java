@@ -1,8 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Proizvod {
+public class Proizvod implements Serializable {
    
    private String idAritkla;
    
@@ -26,7 +27,20 @@ public class Proizvod {
    
    public ArrayList<StavkaCennovnika> stavkeCenovnika;
    
-   public int getCena() {  //zadnja dodata stavkaCenovnika u listi sadrzi aktuelnu cenu
+   public Proizvod() {
+	   
+   }
+   
+   public Proizvod(String idAritkla, String naziv, String opis, String velicina, Boja boja) {
+	super();
+	this.idAritkla = idAritkla;
+	this.naziv = naziv;
+	this.opis = opis;
+	this.velicina = velicina;
+	this.boja = boja;
+}
+
+public int getCena() {  //zadnja dodata stavkaCenovnika u listi sadrzi aktuelnu cenu
 	   int cena = stavkeCenovnika.get(stavkeCenovnika.size()-1).getJedinicnaCena();
 	   return cena;
    }

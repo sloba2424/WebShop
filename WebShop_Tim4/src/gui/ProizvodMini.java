@@ -7,14 +7,20 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 import javax.swing.border.TitledBorder;
+
+import model.Proizvod;
+
 import javax.swing.UIManager;
 import java.awt.Color;
 import javax.swing.border.BevelBorder;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class ProizvodMini extends JPanel {
+	private Proizvod proizvod;
 
 	/**
 	 * Create the panel.
@@ -49,6 +55,14 @@ public class ProizvodMini extends JPanel {
 		add(lblNewLabel_1, gbc_lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("");
+		lblNewLabel_2.addMouseListener(new MouseAdapter()  
+		{  
+		    public void mouseClicked(MouseEvent e)  
+		    {  
+		    	System.out.println("ovde implementiraj da se doda u korpu");
+
+		    }  
+		}); 
 		lblNewLabel_2.setIcon(new ImageIcon(new ImageIcon(ProizvodMini.class.getResource("/resources/Add-Cart-512.png")).getImage().getScaledInstance(25, 25, Image.SCALE_DEFAULT)));
 		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
 		gbc_lblNewLabel_2.anchor = GridBagConstraints.WEST;
@@ -58,4 +72,14 @@ public class ProizvodMini extends JPanel {
 		add(lblNewLabel_2, gbc_lblNewLabel_2);
 
 	}
+	
+	public ProizvodMini(Proizvod p) {
+		proizvod = p;
+	}
+
+	public Proizvod getProizvod() {
+		return proizvod;
+	}
+
+	
 }

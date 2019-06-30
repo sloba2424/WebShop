@@ -1,8 +1,8 @@
 package model;
 
+import java.io.Serializable;
 
-
-public class RegistrovaniKupac extends Kupac {
+public class RegistrovaniKupac extends Kupac implements Serializable {
    
    public KorisnickiNalog korisnickiNalog;
    

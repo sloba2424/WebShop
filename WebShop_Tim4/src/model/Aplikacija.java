@@ -1,5 +1,11 @@
 package model;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -30,7 +36,7 @@ public class Aplikacija {
    
    public ArrayList<Proizvod> proizvod;
    
-   public java.util.Collection<Prodavnica> prodavnica;
+   public ArrayList<Prodavnica> prodavnica;
    
    
    private void sortirajPoNazivuA_Z(){
@@ -95,9 +101,9 @@ public class Aplikacija {
 	   return 0; //Sve je ispravno uneseno
    }
    
-   public java.util.Collection<KorisnickiNalog> getKorisnickiNalog() {
+   public ArrayList<KorisnickiNalog> getKorisnickiNalog() {
       if (korisnickiNalog == null)
-         korisnickiNalog = new ArrayList();
+         korisnickiNalog = new ArrayList<KorisnickiNalog>();
       return korisnickiNalog;
    }
    
@@ -109,7 +115,7 @@ public class Aplikacija {
    }*/
    
    
-   public void setKorisnickiNalog(java.util.Collection<KorisnickiNalog> noviKorisnickiNalog) {
+   public void setKorisnickiNalog(ArrayList<KorisnickiNalog> noviKorisnickiNalog) {
       obrisiSveKorisnickeNaloge();
       for (java.util.Iterator iter = noviKorisnickiNalog.iterator(); iter.hasNext();)
          dodajKorisnickiNalog((KorisnickiNalog)iter.next());
@@ -120,9 +126,23 @@ public class Aplikacija {
       if (noviKorisnickiNalog == null)
          return;
       if (this.korisnickiNalog == null)
-         this.korisnickiNalog = new ArrayList();
+         this.korisnickiNalog = new ArrayList<KorisnickiNalog>();
       if (!this.korisnickiNalog.contains(noviKorisnickiNalog))
+      {
          this.korisnickiNalog.add(noviKorisnickiNalog);
+         try
+         {
+             FileOutputStream fos = new FileOutputStream("listaKorisnickihNaloga");
+             ObjectOutputStream oos = new ObjectOutputStream(fos);
+             oos.writeObject(korisnickiNalog);
+             oos.close();
+             fos.close();
+         }
+         catch (IOException ioe)
+         {
+             ioe.printStackTrace();
+         }
+      }
    }
    
    
@@ -131,7 +151,21 @@ public class Aplikacija {
          return;
       if (this.korisnickiNalog != null)
          if (this.korisnickiNalog.contains(stariKorisnickiNalog))
+         {
             this.korisnickiNalog.remove(stariKorisnickiNalog);
+            try
+            {
+                FileOutputStream fos = new FileOutputStream("listaKorisnickihNaloga");
+                ObjectOutputStream oos = new ObjectOutputStream(fos);
+                oos.writeObject(korisnickiNalog);
+                oos.close();
+                fos.close();
+            }
+            catch (IOException ioe)
+            {
+                ioe.printStackTrace();
+            }
+         }
    }
    
    
@@ -167,7 +201,21 @@ public class Aplikacija {
       if (this.proizvod == null)
          this.proizvod = new ArrayList();
       if (!this.proizvod.contains(noviProizvod))
+      {
          this.proizvod.add(noviProizvod);
+         try
+         {
+             FileOutputStream fos = new FileOutputStream("listaProizvoda");
+             ObjectOutputStream oos = new ObjectOutputStream(fos);
+             oos.writeObject(proizvod);
+             oos.close();
+             fos.close();
+         }
+         catch (IOException ioe)
+         {
+             ioe.printStackTrace();
+         }
+      }
    }
    
    
@@ -176,7 +224,21 @@ public class Aplikacija {
          return;
       if (this.proizvod != null)
          if (this.proizvod.contains(stariProizvod))
+         {
             this.proizvod.remove(stariProizvod);
+            try
+            {
+                FileOutputStream fos = new FileOutputStream("listaProizvoda");
+                ObjectOutputStream oos = new ObjectOutputStream(fos);
+                oos.writeObject(proizvod);
+                oos.close();
+                fos.close();
+            }
+            catch (IOException ioe)
+            {
+                ioe.printStackTrace();
+            }
+         }
    }
    
    
@@ -187,7 +249,7 @@ public class Aplikacija {
    
    public java.util.Collection<Prodavnica> getProdavnica() {
       if (prodavnica == null)
-         prodavnica = new java.util.HashSet<Prodavnica>();
+         prodavnica = new ArrayList<Prodavnica>();
       return prodavnica;
    }
    
@@ -210,9 +272,23 @@ public class Aplikacija {
       if (novaProdavnica == null)
          return;
       if (this.prodavnica == null)
-         this.prodavnica = new java.util.HashSet<Prodavnica>();
+         this.prodavnica = new ArrayList<Prodavnica>();
       if (!this.prodavnica.contains(novaProdavnica))
+      {
          this.prodavnica.add(novaProdavnica);
+         try
+         {
+             FileOutputStream fos = new FileOutputStream("listaProdavnica");
+             ObjectOutputStream oos = new ObjectOutputStream(fos);
+             oos.writeObject(prodavnica);
+             oos.close();
+             fos.close();
+         }
+         catch (IOException ioe)
+         {
+             ioe.printStackTrace();
+         }
+      }
    }
    
    
@@ -221,7 +297,21 @@ public class Aplikacija {
          return;
       if (this.prodavnica != null)
          if (this.prodavnica.contains(staraProdavnica))
+         {
             this.prodavnica.remove(staraProdavnica);
+            try
+            {
+                FileOutputStream fos = new FileOutputStream("listaProdavnica");
+                ObjectOutputStream oos = new ObjectOutputStream(fos);
+                oos.writeObject(prodavnica);
+                oos.close();
+                fos.close();
+            }
+            catch (IOException ioe)
+            {
+                ioe.printStackTrace();
+            }
+         }
    }
    
    
@@ -247,6 +337,50 @@ public class Aplikacija {
 	   
 	   return pronadjeniProizvodi;
    }
+   
+   
+   public void ucitajKolekcije()
+   {
+	   File f1 = new File("listaProdavnica");
+	   File f2 = new File("listaKorisnickihNaloga");
+	   File f3 = new File("listaProizvoda");
+	   if (f1.exists() && f2.exists() && f3.exists())
+	   {
+	       try
+	       {
+	           FileInputStream fis = new FileInputStream("listaProdavnica");
+	           FileInputStream fis2 = new FileInputStream("listaKorisnickihNaloga");
+	           FileInputStream fis3 = new FileInputStream("listaProizvoda");
+	           ObjectInputStream ois = new ObjectInputStream(fis);
+	           ObjectInputStream ois2 = new ObjectInputStream(fis2);
+	           ObjectInputStream ois3 = new ObjectInputStream(fis3);
+	
+	           prodavnica = (ArrayList<Prodavnica>) ois.readObject();
+	           proizvod = (ArrayList<Proizvod>) ois3.readObject();
+	           korisnickiNalog = (ArrayList<KorisnickiNalog>) ois2.readObject();
+	
+	           ois.close();
+	           ois2.close();
+	           ois3.close();
+	           fis.close();
+	           fis2.close();
+	           fis3.close();
+	       }
+	       catch (IOException ioe)
+	       {
+	           ioe.printStackTrace();
+	           return;
+	       }
+	       catch (ClassNotFoundException c)
+	       {
+	           System.out.println("Class not found");
+	           c.printStackTrace();
+	           return;
+	       }
+	   }
+	   
+   }
+   
 
 
 

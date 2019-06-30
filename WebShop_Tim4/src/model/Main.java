@@ -5,12 +5,19 @@ import gui.AppWindow;
 
 public class Main {
 	
-	Aplikacija app = Aplikacija.getInstance();
+	static Aplikacija app = Aplikacija.getInstance();
 
 	public static void main(String[] args) {
+		//cisto da testiram, posle ce biti nesto smisleno
+		Prodavnica prod = new Prodavnica("br tel", "Prodavnica 1", "adresa1", "email1", null);
+		Proizvod proizvod = new Proizvod("proizvod", "proizvod", "proizvod", "proizvod", null);
+		KorisnickiNalog nalog = new KorisnickiNalog("username", "password", null, null, null);
 		
-		
-			
+		app.dodajKorisnickiNalog(nalog);
+		app.dodajProdavnicu(prod);
+		app.dodajProizvod(proizvod);
+				
+		app.ucitajKolekcije();
 		AppWindow window = new AppWindow();
 		window.frame.setVisible(true);
 		
