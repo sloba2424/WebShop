@@ -105,8 +105,8 @@ public class LogInD extends JDialog {
 				lblNisiRegistrovan.setIcon(new ImageIcon(new ImageIcon(LogInD.class.getResource("/resources/registruj_se.png")).getImage().getScaledInstance(90, 20, Image.SCALE_DEFAULT)));
 				
 				rd = new RegisterDialog();
-				rd.setModal(true);
 				rd.setVisible(true);
+				rd.setModal(true);
 				
 			}
 		});

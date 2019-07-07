@@ -21,7 +21,7 @@ public class Kupac implements Serializable {
    public Korpa korpa;
    
 	public Kupac() {
-
+		Korpa k = new Korpa();
 	}
 
 

@@ -12,6 +12,11 @@ import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.border.TitledBorder;
+
+import model.Aplikacija;
+import model.KorisnickiNalog;
+import model.RegistrovaniKupac;
+
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
@@ -26,21 +31,22 @@ import javax.swing.JRadioButton;
 public class RegisterDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_2;
+	private JTextField ImeTextField;
+	private JTextField PrezimeTextField;
+	private JTextField GradTextField;
+	private JTextField PbrojTextField;
+	private JTextField AdresaTextField;
+	private JTextField KorisnickoTextField;
 	private JPasswordField passwordField;
 	private JPasswordField passwordField_1;
-	private JTextField textField_6;
+	private JTextField mailTextField;
 	private ButtonGroup bg;
 	
 	private JRadioButton rdbtnMuki;
 	private JRadioButton rdbtnenski;
-
-
+	private JButton cancelButton;
+	private JButton okButton;
+	
 	/**
 	 * Create the dialog.
 	 */
@@ -84,14 +90,14 @@ public class RegisterDialog extends JDialog {
 				panel.add(lblIme, gbc_lblIme);
 			}
 			{
-				textField = new JTextField();
+				ImeTextField = new JTextField();
 				GridBagConstraints gbc_textField = new GridBagConstraints();
 				gbc_textField.insets = new Insets(0, 0, 5, 0);
 				gbc_textField.fill = GridBagConstraints.HORIZONTAL;
 				gbc_textField.gridx = 3;
 				gbc_textField.gridy = 1;
-				panel.add(textField, gbc_textField);
-				textField.setColumns(10);
+				panel.add(ImeTextField, gbc_textField);
+				ImeTextField.setColumns(10);
 			}
 			{
 				JLabel lblPrezime = new JLabel("Prezime");
@@ -103,14 +109,14 @@ public class RegisterDialog extends JDialog {
 				panel.add(lblPrezime, gbc_lblPrezime);
 			}
 			{
-				textField_1 = new JTextField();
+				PrezimeTextField = new JTextField();
 				GridBagConstraints gbc_textField_1 = new GridBagConstraints();
 				gbc_textField_1.insets = new Insets(0, 0, 5, 0);
 				gbc_textField_1.fill = GridBagConstraints.HORIZONTAL;
 				gbc_textField_1.gridx = 3;
 				gbc_textField_1.gridy = 3;
-				panel.add(textField_1, gbc_textField_1);
-				textField_1.setColumns(10);
+				panel.add(PrezimeTextField, gbc_textField_1);
+				PrezimeTextField.setColumns(10);
 			}
 			{
 				JLabel lblDrzava = new JLabel("Grad");
@@ -122,14 +128,14 @@ public class RegisterDialog extends JDialog {
 				panel.add(lblDrzava, gbc_lblDrzava);
 			}
 			{
-				textField_3 = new JTextField();
+				GradTextField = new JTextField();
 				GridBagConstraints gbc_textField_3 = new GridBagConstraints();
 				gbc_textField_3.insets = new Insets(0, 0, 5, 0);
 				gbc_textField_3.fill = GridBagConstraints.HORIZONTAL;
 				gbc_textField_3.gridx = 3;
 				gbc_textField_3.gridy = 5;
-				panel.add(textField_3, gbc_textField_3);
-				textField_3.setColumns(10);
+				panel.add(GradTextField, gbc_textField_3);
+				GradTextField.setColumns(10);
 			}
 			{
 				JLabel lblPotanskiBroj = new JLabel("Po\u0161tanski broj");
@@ -141,14 +147,14 @@ public class RegisterDialog extends JDialog {
 				panel.add(lblPotanskiBroj, gbc_lblPotanskiBroj);
 			}
 			{
-				textField_4 = new JTextField();
+				PbrojTextField = new JTextField();
 				GridBagConstraints gbc_textField_4 = new GridBagConstraints();
 				gbc_textField_4.insets = new Insets(0, 0, 5, 0);
 				gbc_textField_4.fill = GridBagConstraints.HORIZONTAL;
 				gbc_textField_4.gridx = 3;
 				gbc_textField_4.gridy = 7;
-				panel.add(textField_4, gbc_textField_4);
-				textField_4.setColumns(10);
+				panel.add(PbrojTextField, gbc_textField_4);
+				PbrojTextField.setColumns(10);
 			}
 			{
 				JLabel lblAdresa = new JLabel("Adresa");
@@ -160,14 +166,14 @@ public class RegisterDialog extends JDialog {
 				panel.add(lblAdresa, gbc_lblAdresa);
 			}
 			{
-				textField_5 = new JTextField();
+				AdresaTextField = new JTextField();
 				GridBagConstraints gbc_textField_5 = new GridBagConstraints();
 				gbc_textField_5.insets = new Insets(0, 0, 5, 0);
 				gbc_textField_5.fill = GridBagConstraints.HORIZONTAL;
 				gbc_textField_5.gridx = 3;
 				gbc_textField_5.gridy = 9;
-				panel.add(textField_5, gbc_textField_5);
-				textField_5.setColumns(10);
+				panel.add(AdresaTextField, gbc_textField_5);
+				AdresaTextField.setColumns(10);
 			}
 			{
 				JLabel lblNewLabel = new JLabel("Pol");
@@ -179,21 +185,21 @@ public class RegisterDialog extends JDialog {
 				panel.add(lblNewLabel, gbc_lblNewLabel);
 			}
 			{
-				JPanel panel_1 = new JPanel();
+				JPanel PolPanel = new JPanel();
 				GridBagConstraints gbc_panel_1 = new GridBagConstraints();
 				gbc_panel_1.fill = GridBagConstraints.BOTH;
 				gbc_panel_1.gridx = 3;
 				gbc_panel_1.gridy = 11;
-				panel.add(panel_1, gbc_panel_1);
-				panel_1.setLayout(new BoxLayout(panel_1, BoxLayout.Y_AXIS));
+				panel.add(PolPanel, gbc_panel_1);
+				PolPanel.setLayout(new BoxLayout(PolPanel, BoxLayout.Y_AXIS));
 				{
 					rdbtnMuki = new JRadioButton("Mu\u0161ki");
 					rdbtnMuki.setSelected(true);
-					panel_1.add(rdbtnMuki);
+					PolPanel.add(rdbtnMuki);
 				}
 				{
 					rdbtnenski = new JRadioButton("\u017Denski");
-					panel_1.add(rdbtnenski);
+					PolPanel.add(rdbtnenski);
 				}
 				
 				bg.add(rdbtnMuki);
@@ -233,14 +239,14 @@ public class RegisterDialog extends JDialog {
 				panel.add(lblKorisnickoIme, gbc_lblKorisnickoIme);
 			}
 			{
-				textField_2 = new JTextField();
+				KorisnickoTextField = new JTextField();
 				GridBagConstraints gbc_textField_2 = new GridBagConstraints();
 				gbc_textField_2.insets = new Insets(0, 0, 5, 5);
 				gbc_textField_2.fill = GridBagConstraints.HORIZONTAL;
 				gbc_textField_2.gridx = 3;
 				gbc_textField_2.gridy = 2;
-				panel.add(textField_2, gbc_textField_2);
-				textField_2.setColumns(10);
+				panel.add(KorisnickoTextField, gbc_textField_2);
+				KorisnickoTextField.setColumns(10);
 			}
 			{
 				JLabel lblLozinka = new JLabel("Lozinka");
@@ -288,14 +294,14 @@ public class RegisterDialog extends JDialog {
 				panel.add(lblEmail, gbc_lblEmail);
 			}
 			{
-				textField_6 = new JTextField();
+				mailTextField = new JTextField();
 				GridBagConstraints gbc_textField_6 = new GridBagConstraints();
 				gbc_textField_6.insets = new Insets(0, 0, 5, 5);
 				gbc_textField_6.fill = GridBagConstraints.HORIZONTAL;
 				gbc_textField_6.gridx = 3;
 				gbc_textField_6.gridy = 8;
-				panel.add(textField_6, gbc_textField_6);
-				textField_6.setColumns(10);
+				panel.add(mailTextField, gbc_textField_6);
+				mailTextField.setColumns(10);
 			}
 		}
 		{
@@ -308,7 +314,7 @@ public class RegisterDialog extends JDialog {
 			gbl_buttonPane.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
 			buttonPane.setLayout(gbl_buttonPane);
 			{
-				JButton okButton = new JButton("Otkazi");
+				okButton = new JButton("Otkazi");
 				okButton.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
@@ -316,7 +322,7 @@ public class RegisterDialog extends JDialog {
 					}
 				});
 				okButton.setHorizontalAlignment(SwingConstants.LEFT);
-				okButton.setActionCommand("OK");
+				//okButton.setActionCommand("Cancel");
 				GridBagConstraints gbc_okButton = new GridBagConstraints();
 				gbc_okButton.anchor = GridBagConstraints.NORTHWEST;
 				gbc_okButton.insets = new Insets(0, 0, 5, 5);
@@ -326,8 +332,29 @@ public class RegisterDialog extends JDialog {
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
-				JButton cancelButton = new JButton("Registruj se");
-				cancelButton.setActionCommand("Cancel");
+				cancelButton = new JButton("Registruj se");
+				//cancelButton.setActionCommand("OK");
+				cancelButton.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent arg0) {
+						String ime = ImeTextField.getText();
+						String prez = PrezimeTextField.getText();
+						String grad = GradTextField.getText();
+						String adresa = AdresaTextField.getText();
+						String mail = mailTextField.getText();
+						String pbroj = PbrojTextField.getText();
+						String korisnicko = KorisnickoTextField.getText();
+						String sifra = String.valueOf(passwordField.getPassword());
+						
+						KorisnickiNalog kn = new KorisnickiNalog(korisnicko, sifra, null);
+						RegistrovaniKupac rg = new RegistrovaniKupac(kn);
+						Aplikacija app = Aplikacija.getInstance();
+						app.dodajKupca(rg);
+						app.dodajKorisnickiNalog(kn);
+						close();
+						
+					}
+				});
 				GridBagConstraints gbc_cancelButton = new GridBagConstraints();
 				gbc_cancelButton.insets = new Insets(0, 0, 5, 5);
 				gbc_cancelButton.anchor = GridBagConstraints.NORTHWEST;
@@ -341,7 +368,7 @@ public class RegisterDialog extends JDialog {
 	private void close() {
 		this.setVisible(false);
 		passwordField.setText(null);
-		textField.setText(null);
+		ImeTextField.setText(null);
 		this.dispose();
 	}
 

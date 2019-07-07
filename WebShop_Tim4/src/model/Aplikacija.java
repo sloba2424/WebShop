@@ -21,7 +21,10 @@ public class Aplikacija {
 	private static Aplikacija single_instance = null; 
 	
 	private Aplikacija() {
-		// TODO Auto-generated constructor stub
+		korisnickiNalog = new ArrayList<KorisnickiNalog>();
+		proizvod = new ArrayList<Proizvod>();
+		prodavnica = new ArrayList<Prodavnica>();
+		ulogovan = null; //prvi korisnik je Guest
 	}
 	
 	public static Aplikacija getInstance() { 
@@ -31,6 +34,7 @@ public class Aplikacija {
         return single_instance; 
     }
 	
+	public ArrayList<Kupac> kupci;
 	
    public ArrayList<KorisnickiNalog> korisnickiNalog;
    
@@ -38,10 +42,18 @@ public class Aplikacija {
    
    public ArrayList<Prodavnica> prodavnica;
    
-   private RegistrovaniKupac ulogovan;
+   private Kupac ulogovan;
    
    
-   private void sortirajPoNazivuA_Z(){
+public ArrayList<Kupac> getKupci() {
+	return kupci;
+}
+
+public void setKupci(ArrayList<Kupac> kupci) {
+	this.kupci = kupci;
+}
+
+private void sortirajPoNazivuA_Z(){
 	   
 	   Collections.sort(proizvod, new PoredjenjePoNazivuA_Z());
 	   
@@ -124,13 +136,36 @@ public class Aplikacija {
    }
    
    
+   public void dodajKupca(Kupac noviKupac) {
+	      if (noviKupac == null)
+	          return;
+	       if (this.kupci == null)
+	          this.kupci = new ArrayList<Kupac>();
+	       if (!this.kupci.contains(noviKupac))
+	       {
+	          this.kupci.add(noviKupac);
+	          try
+	          {
+	              FileOutputStream fos = new FileOutputStream("listaKupaca");
+	              ObjectOutputStream oos = new ObjectOutputStream(fos);
+	              oos.writeObject(kupci);
+	              oos.close();
+	              fos.close();
+	          }
+	          catch (IOException ioe)
+	          {
+	              ioe.printStackTrace();
+	          }
+	       }
+   }
+   
    public void dodajKorisnickiNalog(KorisnickiNalog noviKorisnickiNalog) {
       if (noviKorisnickiNalog == null)
          return;
       if (this.korisnickiNalog == null)
          this.korisnickiNalog = new ArrayList<KorisnickiNalog>();
-      if (!this.korisnickiNalog.contains(noviKorisnickiNalog))
-      {
+  //    if (!this.korisnickiNalog.contains(noviKorisnickiNalog))
+    //  {
          this.korisnickiNalog.add(noviKorisnickiNalog);
          try
          {
@@ -144,7 +179,7 @@ public class Aplikacija {
          {
              ioe.printStackTrace();
          }
-      }
+    //  }
    }
    
    
@@ -346,27 +381,33 @@ public class Aplikacija {
 	   File f1 = new File("listaProdavnica");
 	   File f2 = new File("listaKorisnickihNaloga");
 	   File f3 = new File("listaProizvoda");
-	   if (f1.exists() && f2.exists() && f3.exists())
+	   File f4 = new File("listaKupaca");
+	   if (f1.exists() && f2.exists() && f3.exists() && f4.exists())
 	   {
 	       try
 	       {
 	           FileInputStream fis = new FileInputStream("listaProdavnica");
 	           FileInputStream fis2 = new FileInputStream("listaKorisnickihNaloga");
 	           FileInputStream fis3 = new FileInputStream("listaProizvoda");
+	           FileInputStream fis4 = new FileInputStream("listaKupaca");
 	           ObjectInputStream ois = new ObjectInputStream(fis);
 	           ObjectInputStream ois2 = new ObjectInputStream(fis2);
 	           ObjectInputStream ois3 = new ObjectInputStream(fis3);
+	           ObjectInputStream ois4 = new ObjectInputStream(fis4);
 	
 	           prodavnica = (ArrayList<Prodavnica>) ois.readObject();
 	           proizvod = (ArrayList<Proizvod>) ois3.readObject();
 	           korisnickiNalog = (ArrayList<KorisnickiNalog>) ois2.readObject();
+	           kupci = (ArrayList<Kupac>) ois4.readObject();
 	
 	           ois.close();
 	           ois2.close();
 	           ois3.close();
+	           ois4.close();
 	           fis.close();
 	           fis2.close();
 	           fis3.close();
+	           fis4.close();
 	       }
 	       catch (IOException ioe)
 	       {
@@ -394,11 +435,11 @@ public class Aplikacija {
 	   return null;
    }
 
-public RegistrovaniKupac getUlogovan() {
+public Kupac getUlogovan() {
 	return ulogovan;
 }
 
-public void setUlogovan(RegistrovaniKupac ulogovan) {
+public void setUlogovan(Kupac ulogovan) {
 	this.ulogovan = ulogovan;
 }
 

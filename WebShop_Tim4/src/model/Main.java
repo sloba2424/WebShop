@@ -13,6 +13,7 @@ public class Main {
 		Prodavnica prod = new Prodavnica("br tel", "Prodavnica 1", "adresa1", "email1", null);
 		Proizvod proizvod = new Proizvod("proizvod", "proizvod", "proizvod", "proizvod", null);
 		KorisnickiNalog nalog = new KorisnickiNalog("username", "password", null, null, null);
+		Kupac kupac = new Kupac();
 		
 		app.dodajKorisnickiNalog(nalog);
 		app.dodajProdavnicu(prod);
