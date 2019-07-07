@@ -133,14 +133,13 @@ public class LogInD extends JDialog {
 				String sifra = String.valueOf(passwordField.getPassword());
 				KorisnickiNalog kn = app.pronadjiNalog(korisnickoIme, sifra);
 
-				if (kn != null) //ako je logovanje uspesno
+				if (kn != null)
 				{
 					rg = new RegistrovaniKupac(kn);
 					app.setUlogovan(rg);
 					AppWindow window = Main.getWindow();
 					UserUnderPanel panel = window.getUserUnderPanel();
 					panel.setUsernameText(korisnickoIme);
-					panel.setBtnLogIn("Odjavi se");
 					close();
 				}
 				else {

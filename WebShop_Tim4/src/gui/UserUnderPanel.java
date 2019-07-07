@@ -9,10 +9,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
-import model.Aplikacija;
-import model.Main;
-
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -21,7 +17,6 @@ public class UserUnderPanel extends JPanel {
 	private JTextField textField;
 	private JLabel lblGuest;
 	private LogInD lid;
-	private JButton btnLogIn;
 	private KorpaDialog kd;
 	/**
 	 * Create the panel.
@@ -98,22 +93,13 @@ public class UserUnderPanel extends JPanel {
 		gbc_lblNewLabel_3.gridy = 1;
 		add(lblNewLabel_3, gbc_lblNewLabel_3);
 		
-		btnLogIn = new JButton("Prijavi se");
+		JButton btnLogIn = new JButton("Log in");
 		btnLogIn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Aplikacija app = Aplikacija.getInstance();
-				if (app.getUlogovan() == null) {
 				lid = new LogInD();
 				lid.setVisible(true);
 				lid.setModal(true);
-				}else {
-					app.setUlogovan(null);
-					AppWindow window = Main.getWindow();
-					UserUnderPanel panel = window.getUserUnderPanel();
-					panel.setUsernameText("Guest");
-					panel.setBtnLogIn("Prijavi se");
-				}
 			}
 		});
 		GridBagConstraints gbc_btnLogIn = new GridBagConstraints();
@@ -138,12 +124,6 @@ public class UserUnderPanel extends JPanel {
 	public void setUsernameText(String username)
 	{
 		lblGuest.setText(username);
-	}
-	
-	public void setBtnLogIn(String logOut)
-	{
-		
-		btnLogIn.setText(logOut);
 	}
 
 }
