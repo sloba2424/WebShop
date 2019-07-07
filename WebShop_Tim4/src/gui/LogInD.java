@@ -7,7 +7,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import model.Aplikacija;
+import model.KorisnickiNalog;
+import model.Main;
 import model.RegistrovaniKupac;
+import static model.TipKorisnika.*;
 
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
@@ -50,12 +54,12 @@ public class LogInD extends JDialog {
 		gbl_contentPane.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		
-		JLabel lblNewLabel = new JLabel("Korisnicko ime");
-		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel.gridx = 1;
-		gbc_lblNewLabel.gridy = 1;
-		contentPane.add(lblNewLabel, gbc_lblNewLabel);
+		JLabel usernameLabel = new JLabel("Korisnicko ime");
+		GridBagConstraints gbc_usernameLabel = new GridBagConstraints();
+		gbc_usernameLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_usernameLabel.gridx = 1;
+		gbc_usernameLabel.gridy = 1;
+		contentPane.add(usernameLabel, gbc_usernameLabel);
 		
 		textField = new JTextField();
 		GridBagConstraints gbc_textField = new GridBagConstraints();
@@ -66,13 +70,13 @@ public class LogInD extends JDialog {
 		contentPane.add(textField, gbc_textField);
 		textField.setColumns(10);
 		
-		JLabel lblNewLabel_1 = new JLabel("Lozinka");
-		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
-		gbc_lblNewLabel_1.anchor = GridBagConstraints.WEST;
-		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_1.gridx = 1;
-		gbc_lblNewLabel_1.gridy = 3;
-		contentPane.add(lblNewLabel_1, gbc_lblNewLabel_1);
+		JLabel passwordLabel = new JLabel("Lozinka");
+		GridBagConstraints gbc_passwordLabel = new GridBagConstraints();
+		gbc_passwordLabel.anchor = GridBagConstraints.WEST;
+		gbc_passwordLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_passwordLabel.gridx = 1;
+		gbc_passwordLabel.gridy = 3;
+		contentPane.add(passwordLabel, gbc_passwordLabel);
 		
 		passwordField = new JPasswordField();
 		GridBagConstraints gbc_passwordField = new GridBagConstraints();
@@ -124,7 +128,26 @@ public class LogInD extends JDialog {
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				rg = new RegistrovaniKupac();
+				Aplikacija app = Aplikacija.getInstance();
+				String korisnickoIme = textField.getText();
+				String sifra = String.valueOf(passwordField.getPassword());
+				KorisnickiNalog kn = app.pronadjiNalog(korisnickoIme, sifra);
+
+				if (kn != null)
+				{
+					rg = new RegistrovaniKupac(kn);
+					app.setUlogovan(rg);
+					AppWindow window = Main.getWindow();
+					UserUnderPanel panel = window.getUserUnderPanel();
+					panel.setUsernameText(korisnickoIme);
+					close();
+				}
+				else {
+					/*
+					 * ovde treba mali dijalog da je uneo nevalidan username/password
+					 */
+					passwordField.setText("");
+				}
 				
 			}
 		});

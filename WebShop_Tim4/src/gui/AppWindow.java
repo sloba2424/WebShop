@@ -12,6 +12,9 @@ import javax.swing.ImageIcon;
 import java.awt.Insets;
 
 public class AppWindow {
+	
+	private UserUnderPanel userUnderPanel;
+
 
 	public JFrame frame;
 	
@@ -43,7 +46,7 @@ public class AppWindow {
 		gbc_lblNewLabel.gridy = 0;
 		frame.getContentPane().add(lblNewLabel, gbc_lblNewLabel);
 		
-		UserUnderPanel userUnderPanel = new UserUnderPanel();
+		userUnderPanel = new UserUnderPanel();
 		GridBagConstraints gbc_userUnderPanel = new GridBagConstraints();
 		gbc_userUnderPanel.insets = new Insets(0, 0, 5, 0);
 		gbc_userUnderPanel.fill = GridBagConstraints.HORIZONTAL;
@@ -60,4 +63,11 @@ public class AppWindow {
 		frame.getContentPane().add(mainDisplayPanel, gbc_mainDisplayPanel);
 	}
 
+	public UserUnderPanel getUserUnderPanel() {
+		return userUnderPanel;
+	}
+
+	public void setUserUnderPanel(UserUnderPanel userUnderPanel) {
+		this.userUnderPanel = userUnderPanel;
+	}
 }

@@ -8,6 +8,7 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.border.TitledBorder;
 
+import model.Aplikacija;
 import model.Proizvod;
 
 import javax.swing.UIManager;
@@ -59,8 +60,10 @@ public class ProizvodMini extends JPanel {
 		{  
 		    public void mouseClicked(MouseEvent e)  
 		    {  
-		    	System.out.println("ovde implementiraj da se doda u korpu");
-
+		    	/*ovde implementiraj dodavanje u korpu
+		    	 * moras prvo iz aplikacije getovati ulogovanog korisnika, pa dodati u njegovu korpu proizvod, pa javiti gui korpi da doda
+		    	 */
+		    	Aplikacija app = Aplikacija.getInstance();
 		    }  
 		}); 
 		lblNewLabel_2.setIcon(new ImageIcon(new ImageIcon(ProizvodMini.class.getResource("/resources/Add-Cart-512.png")).getImage().getScaledInstance(25, 25, Image.SCALE_DEFAULT)));

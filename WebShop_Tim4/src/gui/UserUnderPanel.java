@@ -15,7 +15,7 @@ import java.awt.event.MouseEvent;
 
 public class UserUnderPanel extends JPanel {
 	private JTextField textField;
-	
+	private JLabel lblGuest;
 	private LogInD lid;
 	private KorpaDialog kd;
 	/**
@@ -52,7 +52,7 @@ public class UserUnderPanel extends JPanel {
 		gbc_lblNewLabel_2.gridy = 1;
 		add(lblNewLabel_2, gbc_lblNewLabel_2);
 		
-		JLabel lblGuest = new JLabel("Guest");
+		lblGuest = new JLabel("Guest");
 		GridBagConstraints gbc_lblGuest = new GridBagConstraints();
 		gbc_lblGuest.anchor = GridBagConstraints.WEST;
 		gbc_lblGuest.insets = new Insets(0, 0, 5, 5);
@@ -119,6 +119,11 @@ public class UserUnderPanel extends JPanel {
 		add(lblNewLabel_2, gbc_lblNewLabel_2);
 		*/
 
+	}
+	
+	public void setUsernameText(String username)
+	{
+		lblGuest.setText(username);
 	}
 
 }

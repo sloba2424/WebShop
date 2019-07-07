@@ -23,6 +23,28 @@ public class KorisnickiNalog implements Serializable {
 	
 	
 	
+	public KorisnickiNalog(String korisnickoIme, String lozinka, TipKorisnika tk) {
+		super();
+		this.korisnickoIme = korisnickoIme;
+		this.lozinka = lozinka;
+		this.vrstaKorisnika = tk;
+	}
+	
+	
+
+
+
+	public KorisnickiNalog(String korisnickoIme, String lozinka, TipKorisnika vrstaKorisnika,
+			RegistrovaniKupac registrovaniKupac) {
+		super();
+		this.korisnickoIme = korisnickoIme;
+		this.lozinka = lozinka;
+		this.vrstaKorisnika = vrstaKorisnika;
+		this.registrovaniKupac = registrovaniKupac;
+	}
+
+
+
 	public KorisnickiNalog(String korisnickoIme, String lozinka, TipKorisnika vrstaKorisnika, Mesto mesto,
 			RegistrovaniKupac registrovaniKupac) {
 		super();

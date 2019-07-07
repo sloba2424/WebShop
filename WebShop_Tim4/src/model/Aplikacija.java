@@ -38,6 +38,8 @@ public class Aplikacija {
    
    public ArrayList<Prodavnica> prodavnica;
    
+   private RegistrovaniKupac ulogovan;
+   
    
    private void sortirajPoNazivuA_Z(){
 	   
@@ -381,6 +383,24 @@ public class Aplikacija {
 	   
    }
    
+   public KorisnickiNalog pronadjiNalog(String korisnicko, String sifra) {
+
+	   
+	   for (KorisnickiNalog kn : korisnickiNalog) {
+		   if (kn.getKorisnickoIme().equals(korisnicko) && kn.getLozinka().equals(sifra))
+			   return kn;
+	   }
+	   
+	   return null;
+   }
+
+public RegistrovaniKupac getUlogovan() {
+	return ulogovan;
+}
+
+public void setUlogovan(RegistrovaniKupac ulogovan) {
+	this.ulogovan = ulogovan;
+}
 
 
 

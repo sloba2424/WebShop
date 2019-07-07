@@ -5,6 +5,7 @@ import gui.AppWindow;
 
 public class Main {
 	
+	static AppWindow window;
 	static Aplikacija app = Aplikacija.getInstance();
 
 	public static void main(String[] args) {
@@ -18,10 +19,20 @@ public class Main {
 		app.dodajProizvod(proizvod);
 				
 		app.ucitajKolekcije();
-		AppWindow window = new AppWindow();
+		window = new AppWindow();
 		window.frame.setVisible(true);
 		
 		
 	}
+
+	public static AppWindow getWindow() {
+		return window;
+	}
+
+	public static void setWindow(AppWindow window) {
+		Main.window = window;
+	}
+	
+	
 
 }

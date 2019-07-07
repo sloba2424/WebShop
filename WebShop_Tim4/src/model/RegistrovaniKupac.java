@@ -13,7 +13,23 @@ public class RegistrovaniKupac extends Kupac implements Serializable {
    public java.util.Collection<Narudzbenica> narudzbenica;
    
    
-   public KorisnickiNalog getKorisnickiNalog() {
+   
+   public RegistrovaniKupac() {
+	super();
+}
+   
+   
+
+
+public RegistrovaniKupac(KorisnickiNalog korisnickiNalog) {
+	super();
+	this.korisnickiNalog = korisnickiNalog;
+}
+
+
+
+
+public KorisnickiNalog getKorisnickiNalog() {
 	return korisnickiNalog;
    }
 
