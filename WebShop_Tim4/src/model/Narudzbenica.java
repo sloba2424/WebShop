@@ -12,17 +12,23 @@ public class Narudzbenica extends Korpa {
    
    private int adresaIsporuke;
    
-   private Placanje nacinPlacanja;
+   private NacinPlacanja nacinPlacanja;
    
    private String ime;
    
    private String prezime;
    
    
-   public Stanje stanje;
+   public Stanje stanje = new Placanje();
+   
+   
    
    public RegistrovaniKupac registrovaniKupac;
    
+   public void prikaziStanje() {
+	   System.out.println("Naruzbenica je u stanju: " +stanje.toString());
+		
+   }
    
    public void zabranaPromeneSadrzaja() {
       // TODO: implement

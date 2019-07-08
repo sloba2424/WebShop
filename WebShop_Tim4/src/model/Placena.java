@@ -5,6 +5,11 @@ import java.util.*;
 
 
 public class Placena extends Stanje {
+	
+	@Override
+	public String toString() {
+		return "PLACENA";
+	}
    
    public void entry() {
       // TODO: implement

@@ -4,10 +4,26 @@ package model;
 import java.util.*;
 
 
-public enum Placanje {
+public class Placanje extends Stanje {
    
-   master,
-   visa,
-   paypal;
+   @Override
+	public String toString() {
+		return "PLACANJE";
+	}
+
+
+public void entry() {
+      // TODO: implement
+   }
+   
+   
+   public void obavljenoPlacanje() {
+      // TODO: implement
+   }
+   
+   
+   public void otkazanoPlacanje() {
+      // TODO: implement
+   }
 
 }

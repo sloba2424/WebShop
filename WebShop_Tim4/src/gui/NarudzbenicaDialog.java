@@ -7,6 +7,12 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import model.Kontroler;
+import model.NaCekanju;
+import model.Narudzbenica;
+import model.Stanje;
+
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
@@ -28,12 +34,23 @@ public class NarudzbenicaDialog extends JDialog {
 	private ButtonGroup bg;
 	private JRadioButton rdbtnNewRadioButton;
 	private JRadioButton rdbtnNewRadioButton_1;
+	private SimBankeDialog sbd;
+	
+	private Narudzbenica narudzbenica;
+	
+	private Kontroler kontroler;
 	
 
 	/**
 	 * Create the dialog.
 	 */
 	public NarudzbenicaDialog() {
+		
+		narudzbenica = new Narudzbenica();
+		narudzbenica.prikaziStanje();
+		kontroler = new Kontroler();
+		sbd = new SimBankeDialog();
+		
 		setTitle("Formiranje narudzbenice");
 		setBounds(100, 100, 450, 228);
 		getContentPane().setLayout(new BorderLayout());
@@ -170,12 +187,34 @@ public class NarudzbenicaDialog extends JDialog {
 				JButton cancelButton = new JButton("Naru\u010Di");
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
+						
+						sbd.setVisible(true);
 					}
 				});
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
 		}
+		
+		sbd.btnNewButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				kontroler.placenjaNarudzbenice(narudzbenica);
+				System.out.println("Naruzbenica je u stanju: " + narudzbenica.stanje.toString());
+				
+			}
+		});
+		
+		sbd.btnNewButton_1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				kontroler.odbijenoPlacanje(narudzbenica);
+				System.out.println("Naruzbenica je u stanju: " +narudzbenica.stanje.toString());
+				
+			}
+		});
 	}
 
 }
