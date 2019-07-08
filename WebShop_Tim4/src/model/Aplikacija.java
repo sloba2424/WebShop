@@ -77,14 +77,14 @@ private void sortirajPoNazivuA_Z(){
 	    return p.matcher(eAdresa).matches(); 
 	}
 	
-   public int registrovanje(String ime, String prezime, Pol p, String nazivMesta, String pttBroj, String adresa, String korisnickoIme, String lozinka, String ponovljenaLozinka, String eAdresa)
+   public int registrovanje(String ime, String prezime, String nazivMesta, String pttBroj, String adresa, String korisnickoIme, String lozinka, String ponovljenaLozinka, String eAdresa)
    {
 	   for(KorisnickiNalog nalog : korisnickiNalog)
 	   {
 		   if(nalog.getKorisnickoIme() == korisnickoIme)
 			   return 1; //Korisnicko ime vec postoji
 	   }
-	   if(lozinka != ponovljenaLozinka)
+	   if(!lozinka.equals(ponovljenaLozinka))
 	   {
 		   return 2; //Ponovljena lozinka nije ista
 	   }
@@ -92,7 +92,7 @@ private void sortirajPoNazivuA_Z(){
 	   {
 		   return 3; //Nepravilna e-mail adresa
 	   }
-	   else
+/*	   else
 	   {
 		   KorisnickiNalog nalog = new KorisnickiNalog();
 		   nalog.setKorisnickoIme(korisnickoIme);
@@ -111,7 +111,7 @@ private void sortirajPoNazivuA_Z(){
 		   
 		   dodajKorisnickiNalog(nalog);
 		   
-	   }
+	   }*/
 	   return 0; //Sve je ispravno uneseno
    }
    

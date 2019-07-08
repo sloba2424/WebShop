@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 
 import javax.swing.JButton;
@@ -12,10 +13,12 @@ import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.border.TitledBorder;
+import javax.swing.JOptionPane;
 
 import model.Aplikacija;
 import model.KorisnickiNalog;
 import model.RegistrovaniKupac;
+import model.TipKorisnika;
 
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
@@ -341,17 +344,50 @@ public class RegisterDialog extends JDialog {
 						String prez = PrezimeTextField.getText();
 						String grad = GradTextField.getText();
 						String adresa = AdresaTextField.getText();
-						String mail = mailTextField.getText();
-						String pbroj = PbrojTextField.getText();
+						String eAdresa = mailTextField.getText();
+						String pttBroj = PbrojTextField.getText();
 						String korisnicko = KorisnickoTextField.getText();
-						String sifra = String.valueOf(passwordField.getPassword());
+						String lozinka = String.valueOf(passwordField.getPassword());
+						String ponovljenaLozinka = String.valueOf(passwordField_1.getPassword());
 						
-						KorisnickiNalog kn = new KorisnickiNalog(korisnicko, sifra, null);
-						RegistrovaniKupac rg = new RegistrovaniKupac(kn);
+						String message;
+						
+						ImeTextField.setBackground(Color.WHITE);
+						passwordField_1.setBackground(Color.WHITE);
+						mailTextField.setBackground(Color.WHITE);
+						
 						Aplikacija app = Aplikacija.getInstance();
-						app.dodajKupca(rg);
-						app.dodajKorisnickiNalog(kn);
-						close();
+						int tmp = app.registrovanje(ime, prez, grad, pttBroj, adresa, korisnicko, lozinka, ponovljenaLozinka, eAdresa);
+						if(tmp == 1)
+						{
+							message = "Korisničko ime već postoji!";
+							ImeTextField.setBackground(Color.RED);
+						}
+						else if(tmp == 2)
+						{
+							message = "Ponovljena lozinka nije ista!";
+							passwordField_1.setBackground(Color.RED);
+							
+						}
+						else if(tmp == 3)
+						{
+							message = "Nepravilna e-adresa!";
+							mailTextField.setBackground(Color.RED);
+						}
+						else if(tmp == 0)
+						{
+							ImeTextField.setBackground(Color.WHITE);
+							passwordField_1.setBackground(Color.WHITE);
+							mailTextField.setBackground(Color.WHITE);
+							
+							KorisnickiNalog kn = new KorisnickiNalog(korisnicko, lozinka, TipKorisnika.registrovaniKupac);
+							RegistrovaniKupac rg = new RegistrovaniKupac(kn);
+							
+							app.dodajKupca(rg);
+							app.dodajKorisnickiNalog(kn);
+							
+							close();
+						}
 						
 					}
 				});
