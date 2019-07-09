@@ -36,6 +36,13 @@ public class ProizvodMini extends JPanel {
 		setLayout(gridBagLayout);
 		
 		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				DetaljiProizvodaPanel dpp = new DetaljiProizvodaPanel();
+				dpp.setVisible(true);
+			}
+		});
 		lblNewLabel.setIcon(new ImageIcon(new ImageIcon(ProizvodMini.class.getResource("/resources/amisco-alto-dining-chair.jpg")).getImage().getScaledInstance(120, 145, Image.SCALE_DEFAULT)));
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 		gbc_lblNewLabel.anchor = GridBagConstraints.SOUTH;
