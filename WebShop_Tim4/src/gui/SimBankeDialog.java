@@ -10,6 +10,8 @@ import java.awt.GridBagLayout;
 import javax.swing.JButton;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class SimBankeDialog extends JFrame {
 
@@ -26,7 +28,7 @@ public class SimBankeDialog extends JFrame {
 	 * Create the frame.
 	 */
 	public SimBankeDialog() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 372, 132);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -39,6 +41,11 @@ public class SimBankeDialog extends JFrame {
 		contentPane.setLayout(gbl_contentPane);
 		
 		btnNewButton = new JButton("Potvrda placanja");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
 		gbc_btnNewButton.insets = new Insets(0, 0, 5, 5);
 		gbc_btnNewButton.gridx = 1;
@@ -46,6 +53,11 @@ public class SimBankeDialog extends JFrame {
 		contentPane.add(btnNewButton, gbc_btnNewButton);
 		
 		btnNewButton_1 = new JButton("Otkazivanje placanja");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
 		gbc_btnNewButton_1.insets = new Insets(0, 0, 5, 5);
 		gbc_btnNewButton_1.gridx = 3;
